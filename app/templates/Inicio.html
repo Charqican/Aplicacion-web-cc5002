@@ -1,0 +1,33 @@
+{% extends 'base.html'%}
+{% block title %}Información de la donación{% endblock %}
+
+{% block css %}
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
+crossorigin=""/>
+{% endblock %}
+
+
+{% block content %}
+<div>
+    <h1>Página para donación y peticion de fruta sobrante</h1>
+    <h3>Tarea 3 Desarrollo de Aplicaciones Web </h3>
+    <div class = "table-inicio-container">
+    </div>
+</div>
+<hr>
+<div class = "main-container">
+    <div class="map-container">
+        <h2>Mapa de Donaciones y pedidos</h2>
+        <div id="map"></div>
+    </div>
+</div>
+
+{% endblock %}
+
+{% block javascript %}
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
+crossorigin=""></script>
+<script src="{{ url_for('static', filename='js/map.js') }}"></script>
+{% endblock %}

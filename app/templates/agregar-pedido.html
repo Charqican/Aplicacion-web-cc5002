@@ -1,0 +1,78 @@
+{% extends 'base.html'%}
+{% block title %}Agregar un pedido{% endblock %}
+
+{% block content %}
+    <div>
+        <h1>Agregar un Pedido</h1>
+        <hr>
+    </div>
+
+    <div id="error-container" hidden>
+        <h1>Error</h1>
+        <p>Los siguienes campos están erroneos: </p>
+        <ul id = "error-list"></ul>
+        <button id="error-button" type="button">Volver al Formulario</button>
+        <hr>
+    </div>
+
+    <div id="main-container">
+    <form name ="agregar-peticion-form" method="post" action="agregar-pedido" class="dono">
+
+        <div id="region-comuna-container">
+            <label for="region">Región: </label>
+            <select name="region" id="region">
+            <option value="0">---Selecciona una región---</option>
+            </select>
+
+            <label for="comuna">Comuna: </label>
+            <select name="comuna" id="comuna">
+            <option value="0">---Selecciona una Comuna---</option>
+            </select> <br> <br>
+        </div>
+
+        <label for="tipo">Tipo de Donacion</label>
+        <select name="tipo" id="tipo">
+            <option value="Fruta">Fruta</option>
+            <option value="Verdura">Verdura</option>
+            <option value="Otro">Otro</option>
+        </select> <br><br>
+
+        <label for="descripcion">Descripción del Pedido</label>
+        <input type="text" name="descripcion" id="descripcion" size="80" maxlength="250"> <br><br>
+
+        <label for="cantidad">Cantidad</label>
+        <input type="number" name="cantidad" id="cantidad" min="1" max ="9999999999" required> <br> <br>
+        
+        <label for="nombre">Nombre del solicitante</label>
+        <input type="text" name="nombre" id="nombre" size = "80" maxlength="80" minlength="3" required> <br><br>
+
+        <label for="email">Email de Contacto</label>
+        <input type="email" name="email" id="email" size="30" required><br><br>
+
+        <label for="celular">Número de celular</label>
+        <input type="text" name="celular" id="celular" size="15"> <br><br>
+
+        <button id = "submit-button" type="submit">Agregar Pedido</button>
+    </form>
+    <hr>
+    
+    </div>
+
+    <div id="confirmation-container" hidden>
+        <h1>¿Confirma el envío de esta donación?</h1> <br>
+        <button id="confirmation-button" type="button">Confirmar</button>
+        <button id="go-back-button">Volver al formulario</button>
+        <hr>
+    </div>
+
+    <div id="send-container" hidden>
+        <h1>¡Listo!</h1>
+        <h2>Hemos recibido la información de su donación. ¡Muchas gracias!</h2>
+        <hr>
+    </div>
+{% endblock %}
+
+{% block javascript %}
+    <script type = "module" src = "{{ url_for('static', filename='js/comuna_handler.js') }}"></script>
+    <script type = "module" src = "{{ url_for('static', filename='js/req_subm_handler.js') }}"></script>
+{% endblock %}

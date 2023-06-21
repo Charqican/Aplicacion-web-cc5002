@@ -1,0 +1,44 @@
+{% extends 'base.html'%}
+{% block title %}Información del pedido{% endblock %}
+
+{% block css %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/modal.css') }}">
+{% endblock %}
+
+{% block content %}
+    <div>
+        <h1>Información Pedido</h1>
+        <p>Información completa del pedido seleccionado</p>
+    </div>
+    <hr>
+    <div id="main-container">
+        <table>
+            <tr>
+            <td><b>Región</b></td>
+            <td><b>Comuna</b></td>
+            <td><b>Tipo</b></td>
+            <td><b>Descripción del pedido</b></td>
+            <td><b>Cantidad</b></td>
+            <td><b>Nombre Solicitante</b></td>
+            <td><b>Email contacto</b></td>
+            <td><b>Número de contacto</b></td>
+            </tr>
+
+            <tr>
+                <td>{{datos[8]}}</td>
+                <td>{{datos[1]}}</td>
+                <td>{{datos[2]}}</td>
+                <td>{{datos[3]}}</td>
+                <td>{{datos[4]}}</td>
+                <td>{{datos[5]}}</td>
+                <td>{{datos[6]}}</td>
+                <td>{{datos[7]}}</td>
+            </tr>
+        </table>
+    </div>
+    <hr>
+    <footer>
+        <a href="{{ url_for('index') }}">Voler al inicio</a>
+    </footer>
+{% endblock %}
+    

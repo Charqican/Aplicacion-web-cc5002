@@ -1,0 +1,103 @@
+{% extends 'base.html'%}
+{% block title %}Información de la donación{% endblock %}
+{% block css %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/modal.css') }}">
+{% endblock %}
+{% block content %}
+    <div>
+        <h1>Información Donación</h1>
+        <p>Información completa de la donación seleccionada</p>
+    </div>
+    <hr>
+    <div id="main-container">
+        <div class="table-container">
+            <table>
+            <thead>
+                <tr class="titulo-tabla">
+                    <td><b>Región</b></td>
+                    <td><b>Comuna</b></td>
+                    <td><b>Calle y número</b></td>
+                    <td><b>Tipo</b></td>
+                    <td><b>Cantidad</b></td>
+                    <td><b>Fecha</b></td>
+                    <td><b>Descripción de la donación</b></td>
+                    <td><b>Condiciones para retiro</b></td>
+                    <td><b>Nombre donante</b></td>
+                    <td><b>Email contacto</b></td>
+                    <td><b>Número de contacto</b></td>
+                    <td><b>Foto donación</b></td>
+                    {% if datos[-1]|length == 2 %}
+                    <td><b>Foto donación 2</b></td>
+                    {% elif datos[-1]|length == 3 %}
+                    <td><b>Foto donación 2</b></td>
+                    <td><b>Foto donación 3</b></td>
+                    {% endif %}
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>{{datos[11]}}</td>
+                    <td>{{datos[1]}}</td>
+                    <td>{{datos[2]}}</td>
+                    <td>{{datos[3]}}</td>
+                    <td>{{datos[4]}}</td>
+                    <td>{{datos[5]}}</td>
+                    <td>{{datos[6]}}</td>
+                    <td>{{datos[7]}}</td>
+                    <td>{{datos[8]}}</td>
+                    <td>{{datos[9]}}</td>
+                    <td>{{datos[10]}}</td>
+                    <td onclick="openModal(this)">
+                        <img src="{{ url_for('static', filename='img/'+ datos[-1][0]) }}" alt="Imagen de la donacion" height="120" width="120">
+                        <!-- Container extraido desde https://jose.cl/tmp/ejemplo.html-->
+                        <div class="modal">
+                            <div class="modal-content">
+                              <span class="close">&times;</span>
+                              <img id = "src" src="{{ url_for('static', filename='img/'+ datos[-1][0]) }}" alt="Imagen de la donacion" width="1280" height="1024">
+                            </div>
+                        </div>
+
+                    </td>
+                    {% if datos[-1]|length == 2 %}
+                    <td onclick="openModal(this)">
+                        <img src="{{ url_for('static', filename='img/'+ datos[-1][1]) }}" alt="Imagen de la donacion" height="120" width="120">
+                        <div class="modal">
+                            <div class="modal-content">
+                              <span class="close">&times;</span>
+                              <img src="{{ url_for('static', filename='img/'+ datos[-1][1]) }}" alt="Imagen de la donacion" width="1280" height="1024">
+                            </div>
+                        </div>
+                    </td>
+                    {% elif datos[-1]|length == 3 %}
+
+                    <td onclick="openModal(this)">
+                        <img src="{{ url_for('static', filename='img/'+ datos[-1][1]) }}" alt="Imagen de la donacion" height="120" width="120">
+                        <div class="modal">
+                            <div class="modal-content">
+                              <span class="close">&times;</span>
+                              <img src="{{ url_for('static', filename='img/'+ datos[-1][1]) }}" alt="Imagen de la donacion" width="1280" height="1024">
+                            </div>
+                        </div>
+                    </td>
+
+                    <td onclick="openModal(this)">
+                        <img src="{{ url_for('static', filename='img/'+ datos[-1][2]) }}" alt="Imagen de la donacion" height="120" width="120">
+                        <div class="modal">
+                            <div class="modal-content">
+                              <span class="close">&times;</span>
+                              <img src="{{ url_for('static', filename='img/'+ datos[-1][2]) }}" alt="Imagen de la donacion" width="1280" height="1024">
+                            </div>
+                        </div>
+                    </td>
+                    {% endif %}
+                </tr>
+            </tbody>
+            </table>
+        </div>
+    </div>
+{% endblock %}
+
+{% block javascript %}
+    <script src="{{ url_for('static', filename='js/modal.js') }}"></script>
+{% endblock %}
+

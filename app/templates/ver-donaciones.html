@@ -1,0 +1,68 @@
+{% extends 'base.html'%}
+{% block title %} Ver Donaciones {% endblock %}
+
+{% block content %}
+<div>
+    <h1>Información de las donaciones realizadas</h1>
+    <p>Aquí podras encontrar tabuladas todas las donaciones realizadas</p>
+</div>
+<hr>
+<div id="main-container">
+    <table>
+        <thead>
+            <tr class = "titulo-tabla">
+                <td><b>Comuna</b></td>
+                <td><b>Tipo</b></td>
+                <td><b>Cantidad</b></td>
+                <td><b>Fecha</b></td>
+                <td><b>Nombre</b></td>
+                <td><b>Foto</b></td>
+                <td><b>Foto 2</b></td>
+                <td><b>Foto 3</b></td>
+            </tr>
+        </thead>
+        <tbody>
+            {% for fila in datos%}
+            <tr class="hover" onclick="getInfoDono('{{ fila[0] }}')">
+                <td>{{fila[1]}}</td>
+                <td>{{fila[2]}}</td>
+                <td>{{fila[3]}}</td>
+                <td>{{fila[4]}}</td>
+                <td>{{fila[5]}}</td>
+                <td><img src="{{ url_for('static', filename='img/' + (fila[6])[0]) }}" alt="Imagen de la donacion" height="120" width="120"></td>
+                {% if fila[6]|length == 1 %}
+                <td>%</td>
+                <td>%</td>
+                {% elif fila[6]|length == 2 %}
+                <td><img src="{{ url_for('static', filename='img/' + (fila[6])[1]) }}" alt="Segunda imagen de la donacion" height="120" width="120"></td>
+                <td>%</td>
+                {% elif fila[6]|length == 3 %}
+                <td><img src="{{ url_for('static', filename='img/' + (fila[6])[1]) }}" alt="Segunda imagen de la donacion" height="120" width="120"></td>
+                <td><img src="{{ url_for('static', filename='img/' + (fila[6])[2]) }}" alt="Tercera imagen de la donacion" height="120" width="120"></td>
+                {% endif%}
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <hr>
+    <div id="change-page-container">
+        <h3>Cambiar pagina</h3>
+        {% if page|int >1%}
+        <button id="btn-" onclick="previousPage('{{ page }}')">
+            Pagina {{ page|int-1 }}
+        </button>
+        {% endif %}
+
+        {% if max_page|int != page|int %}
+        <button id="btn+" onclick="nextPage('{{ page }}')">
+            Pagina {{ page|int+1 }}
+        </button>
+        {% endif %}
+    </div>
+</div>
+<hr>
+{% endblock %}
+
+{% block javascript %}
+<script src="{{ url_for('static', filename='js/utils.js') }}"></script>
+{% endblock %}

@@ -1,0 +1,86 @@
+{% extends 'base.html'%}
+{% block title %}Agregar una donación{% endblock %}
+
+{% block content %}
+    <div>
+        <h1>Agregar una donación</h1>
+    </div>
+    <hr>
+    <div id="error-container" hidden>
+        <h1>Error</h1>
+        <p>Los siguienes campos están erroneos: </p>
+        <ul id = "error-list"></ul>
+        <button id="error-button" type="button">Volver al Formulario</button>
+        <hr>
+    </div>
+
+    <div id="main-container">
+        <form id="agregar-donacion-form" enctype="multipart/form-data" class="dono" action="agregar-donacion" method="post">
+
+            <div id="region-comuna-container">
+                <label for="region">Región: </label>
+                <select name="region" id="region">
+                <option value="0">---Selecciona una región---</option>
+                </select>
+
+                <label for="comuna">Comuna: </label>
+                <select name="comuna" id="comuna">
+                <option value="0">---Selecciona una Comuna---</option>
+                </select> <br> <br>
+            </div>
+
+            <label for="calle-numero">Calle y numero:</label>
+            <input type="text" name="calle-numero" id="calle-numero" size="80" maxlength="80" required> <br><br>
+
+            <label for="tipo">Tipo de Donacion</label>
+            <select name="tipo" id="tipo">
+                <option value="Fruta">Fruta</option>
+                <option value="Verdura">Verdura</option>
+                <option value="Otro">Otro</option>
+            </select> <br><br>
+
+            <label for="cantidad">Cantidad</label>
+            <input type="number" name="cantidad" id="cantidad" min="1" max ="999999999" required> <br> <br>
+            
+            <label for="fecha-disponibilidad">Fecha de disponibilidad</label>
+            <input type="date" name="fecha-disponibilidad" id="fecha-disponibilidad" required><br> <br>
+            
+            <label for="descripcion">Descripción de la donación</label>
+            <input type="text" name="descripcion" id="descripcion" size="80"> <br><br>
+            
+            <label for="condiciones">Condiciones de retiro</label>
+            <input type="text" name="condiciones" id="condiciones" size="80"> <br><br>
+
+            <label id = "foto-label" for="foto">Imagen del producto, puede subir hasta 3 imagenes</label>
+            <input type="file" name="foto" id="foto" accept="image/*,.pdf" required multiple><br><br>
+
+            <label for="nombre">Nombre del donante</label>
+            <input type="text" name="nombre" id="nombre" size ="80" maxlength="80" minlength="3" required> <br><br>
+
+            <label for="email">Email de contacto</label>
+            <input type="email" name="email" id="email" size="30" required><br><br>
+
+            <label for="celular">Número de celular</label>
+            <input type="text" name="celular" id="celular" size="15"> <br><br>
+
+            <button id = "submit-button" type="submit">Agregar donación</button>
+        </form>
+    </div>
+
+    <div id="confirmation-container" hidden>
+        <h1>¿Confirma el envío de esta donación?</h1> <br>
+        <button id="confirmation-button" type="button">Confirmar</button>
+        <button id="go-back-button">Volver al formulario</button>
+    </div>
+
+    <div id="send-container" hidden>
+        <h1>¡Listo!</h1>
+        <h2>Hemos recibido la información de su donación. ¡Muchas gracias!</h2>
+    </div>
+{% endblock %}
+
+{% block javascript %}
+<script src="{{ url_for('static', filename='js/file_handler.js') }}"></script>
+<script type = "module" src="{{ url_for('static', filename='js/comuna_handler.js') }}"></script>
+<script type = "module" src="{{ url_for('static', filename='js/dono_subm_handler.js') }}"></script>
+{% endblock %}

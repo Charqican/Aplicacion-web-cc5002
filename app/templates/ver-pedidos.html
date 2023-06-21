@@ -1,0 +1,57 @@
+{% extends 'base.html'%}
+{% block title %}Ver pedidos{% endblock %}
+
+{% block content %}
+<div>
+    <h1>Información de las peticiones realizadas</h1>
+    <p>Aquí podras encontrar tabuladas todas las donaciones realizadas</p>
+</div>
+<hr>
+<div id="main-container">
+    <table>
+        <thead>
+            <tr class="titulo-tabla">
+                <td><b>Comuna</b></td>
+                <td><b>Tipo</b></td>
+                <td><b>Descripción pedido</b></td>
+                <td><b>Cantidad</b></td>
+                <td><b>Nombre</b></td>
+            </tr>
+        </thead>
+        <tbody>
+            {% for fila in datos %}
+            <tr class="hover" onclick="getInfoPedido('{{ fila[0] }}')">
+                <td>{{fila[1]}}</td>
+                <td>{{fila[2]}}</td>
+                <td>{{fila[3]}}</td>
+                <td>{{fila[4]}}</td>
+                <td>{{fila[5]}}</td>
+            </tr>
+            
+            {% endfor %}
+        </tbody>
+    </table>
+    <hr>
+    <div id="change-page-container">
+        <h3>Cambiar pagina</h3>
+        {% if page|int >1%}
+        <button id="btn-" onclick="previousPageP('{{ page }}')">
+            Pagina {{ page|int-1 }}
+        </button>
+        {% else %}
+        única pagina
+        {% endif %}
+
+        {% if max_page|int != page|int %}
+        <button id="btn+" onclick="nextPageP('{{ page }}')">
+            Pagina {{ page|int+1 }}
+        </button>
+        {% endif %}
+    </div>
+</div>
+<hr>
+{% endblock %}
+
+{% block javascript %}
+<script src="{{ url_for('static', filename='js/utils.js') }}"></script>
+{% endblock %}

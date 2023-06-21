@@ -1,0 +1,18 @@
+{% extends 'base.html'%}
+{% block title %}Graficos sobre donaciones y pedidos{% endblock %}
+
+
+{% block content %}
+
+<div class="highcharts-figure">
+    <div id="container"></div>
+</div>
+{% endblock %}
+
+{% block javascript %}
+<script src="https://code.highcharts.com/highcharts.js"></script>
+<script src="https://code.highcharts.com/modules/exporting.js"></script>
+<script src="https://code.highcharts.com/modules/export-data.js"></script>
+<script src="https://code.highcharts.com/modules/accessibility.js"></script>
+<script src="{{ url_for('static', filename='js/graph.js') }}"></script>
+{% endblock %}
