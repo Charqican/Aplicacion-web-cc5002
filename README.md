@@ -1,6 +1,6 @@
 # Web Application CC5002 2023
 
-This is a web app developed during 2023 as a course project. The idea was to understand how web applications were built, the tools that are used and considerations of security.
+This is a web app developed during 2023 as a course project. The idea was to understand how web applications were built, the tools that are used and considerations for security.
 
 ## About the repository 
 
